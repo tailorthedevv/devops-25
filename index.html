@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Ops 2025</title>
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/352d7ef6-7afe-425f-b2ae-dfa6b07a40d8/devops.webp?v=1732750511979"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        font-family: "REM", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 900;
+        font-style: normal;
+        font-size: 20px;
+        line-height: 1.5;
+        color: black;
+        margin: 0;
+        background: url("https://cdn.glitch.global/352d7ef6-7afe-425f-b2ae-dfa6b07a40d8/Javascript-libraries-scaled.jpg")
+          no-repeat center/cover;
+      }
+
+      .body-section {
+        background-color: rgba(0, 0, 0, 0.6);
+        min-height: 100vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .content-wrapper {
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .subheading {
+        color: white;
+        font-size: 2rem;
+        margin: 0.5rem 0;
+        text-transform: underline;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+      }
+
+      #countdown {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        color: white;
+        font-size: 2rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .time-unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        text-align: center;
+      }
+
+      .time-unit span:first-child {
+        font-size: 3.5rem;
+        font-weight: bold;
+      }
+
+      .time-unit span:last-child {
+        margin-top: 0.2rem;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
+
+      .heading {
+        color: white;
+        font-size: 5rem;
+        text-decoration: underline;
+        line-height: 1.1;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=REM:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section id="home" class="body-section">
+      <div class="content-wrapper">
+        <div>
+          <h1 class="heading">Dev Ops 2025</h1>
+          <h2 class="subheading">Beginning in:</h2>
+          <div id="countdown">
+            <div class="time-unit">
+              <span id="days">0</span>
+              <span>Days</span>
+            </div>
+            <div class="time-unit">
+              <span id="hours">0</span>
+              <span>Hours</span>
+            </div>
+            <div class="time-unit">
+              <span id="minutes">0</span>
+              <span>Minutes</span>
+            </div>
+            <div class="time-unit">
+              <span id="seconds">0</span>
+              <span>Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const targetDate = new Date("January 1, 2025 10:00:00").getTime();
+      const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          document.getElementById("countdown").innerHTML =
+            "The event has started!";
+          return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+      }, 1000);
+    </script>
+  </body>
+</html>
