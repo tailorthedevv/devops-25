@@ -16,7 +16,7 @@
         font-weight: 900;
         font-style: normal;
         font-size: 20px;
-        line-height: 1.5;
+        line-height: 0;
         color: black;
         margin: 0;
         background: url("https://cdn.glitch.global/352d7ef6-7afe-425f-b2ae-dfa6b07a40d8/Javascript-libraries-scaled.jpg")
@@ -27,54 +27,25 @@
         background-color: rgba(0, 0, 0, 0.6);
         min-height: 100vh;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
+        padding: 2rem;
       }
 
       .content-wrapper {
-        margin-left: 2rem;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        align-items: flex-start;
       }
 
       .subheading {
         color: white;
         font-size: 2rem;
         margin: 0.5rem 0;
-        text-transform: underline;
+        text-decoration: underline;
         font-weight: 700;
         letter-spacing: 0.1rem;
-      }
-
-      #countdown {
-        display: flex;
-        justify-content: space-between;
-        gap: 1.5rem;
-        color: white;
-        font-size: 2rem;
-        margin-top: 0.5rem;
-        width: 100%;
-        max-width: 600px;
-      }
-
-      .time-unit {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: 1;
-        text-align: center;
-      }
-
-      .time-unit span:first-child {
-        font-size: 3.5rem;
-        font-weight: bold;
-      }
-
-      .time-unit span:last-child {
-        margin-top: 0.2rem;
-        font-size: 1.2rem;
-        text-transform: uppercase;
       }
 
       .heading {
@@ -84,6 +55,71 @@
         line-height: 1.1;
         font-weight: 900;
         margin-bottom: 0.5rem;
+      }
+
+      .hover-box {
+        position: relative;
+        width: 500px;
+        height: 300px;
+        background-color: black;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+
+      .hover-box:hover {
+        transform: scale(1.05);
+      }
+
+      .hover-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hover-box .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        padding: 10px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .hover-box:hover .overlay {
+        opacity: 1;
+      }
+
+      .overlay .title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding: 20px;
+      }
+
+      .game-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-left: 2rem;
+      }
+
+      .content-wrapper-right {
+        margin: 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+        justify-content: center;
       }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -97,54 +133,33 @@
     <section id="home" class="body-section">
       <div class="content-wrapper">
         <div>
-          <h1 class="heading">Dev Ops 2025</h1>
-          <h2 class="subheading">Beginning in:</h2>
-          <div id="countdown">
-            <div class="time-unit">
-              <span id="days">0</span>
-              <span>Days</span>
-            </div>
-            <div class="time-unit">
-              <span id="hours">0</span>
-              <span>Hours</span>
-            </div>
-            <div class="time-unit">
-              <span id="minutes">0</span>
-              <span>Minutes</span>
-            </div>
-            <div class="time-unit">
-              <span id="seconds">0</span>
-              <span>Seconds</span>
-            </div>
+          <h2 class="subheading">Welcome To:</h2>
+          <h1 class="heading">
+            The Scenexe <br />
+            Dev Portal
+          </h1>
+        </div>
+      </div>
+      <div class="content-wrapper-right">
+        <div class="hover-box">
+          <img
+            src="https://cdn.glitch.global/c8a6f1df-137f-429a-9c37-baed326b1aa0/Screenshot%202024-12-30%20215237.png?v=1735595576080"
+            alt="Game 1 Preview"
+          />
+          <div class="overlay">
+            <div class="title">Rescenexe Temp Server</div>
+          </div>
+        </div>
+        <div class="hover-box">
+          <img
+            src="https://cdn.glitch.global/c8a6f1df-137f-429a-9c37-baed326b1aa0/Screenshot%202024-12-30%20215020.png?v=1735595438641"
+            alt="Game 2 Preview"
+          />
+          <div class="overlay">
+            <div class="title">Grass.io Pre-release</div>
           </div>
         </div>
       </div>
     </section>
-    <script>
-      const targetDate = new Date("January 1, 2025 10:00:00").getTime();
-      const countdownInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const timeLeft = targetDate - now;
-
-        if (timeLeft <= 0) {
-          clearInterval(countdownInterval);
-          document.getElementById("countdown").innerHTML =
-            "The event has started!";
-          return;
-        }
-
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        document.getElementById("days").textContent = days;
-        document.getElementById("hours").textContent = hours;
-        document.getElementById("minutes").textContent = minutes;
-        document.getElementById("seconds").textContent = seconds;
-      }, 1000);
-    </script>
   </body>
 </html>
